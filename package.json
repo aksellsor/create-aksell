@@ -1,0 +1,16 @@
+{
+  "name": "create-aksell",
+  "version": "1.0.0",
+  "description": "Scaffold a new Aksell tool",
+  "type": "module",
+  "bin": {
+    "create-aksell": "./create-aksell.js"
+  },
+  "keywords": ["aksell", "create", "scaffold"],
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "prompts": "^2.4.2",
+    "tiged": "^2.12.7"
+  }
+}
