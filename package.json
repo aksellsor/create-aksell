@@ -6,6 +6,11 @@
   "bin": {
     "create-aksell": "./create-aksell.js"
   },
+  "scripts": {
+    "release:patch": "npm version patch && git push && git push --follow-tags",
+    "release:minor": "npm version minor && git push && git push --follow-tags",
+    "release:major": "npm version major && git push && git push --follow-tags"
+  },
   "keywords": ["aksell", "create", "scaffold"],
   "license": "ISC",
   "dependencies": {
