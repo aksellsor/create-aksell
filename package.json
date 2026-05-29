@@ -1,6 +1,6 @@
 {
   "name": "create-aksell",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Scaffold a new Aksell tool",
   "type": "module",
   "bin": {
