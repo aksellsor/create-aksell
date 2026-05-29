@@ -17,33 +17,47 @@ const TEMPLATES = {
   astro: 'aksellsor/aksell-ui-template-astro',
 };
 
-const response = await prompts(
-  [
-    {
-      type: 'text',
-      name: 'name',
-      message: 'Project name',
-      validate: (v) => (v.trim().length > 0 ? true : 'Name required'),
-    },
-    {
-      type: 'select',
-      name: 'template',
-      message: 'Template',
-      choices: [
-        { title: 'HTML  — zero-build, CDN styles', value: 'html' },
-        { title: 'Astro — full Astro + @aksell/ui', value: 'astro' },
-      ],
-    },
-  ],
-  {
-    onCancel: () => {
-      console.log('\nCancelled.'.meta);
-      process.exit(0);
-    },
-  }
-);
+function getArg(flag) {
+  const i = process.argv.indexOf(flag);
+  return i !== -1 ? process.argv[i + 1] : undefined;
+}
 
-const { name, template } = response;
+const cliName = getArg('--name');
+const cliTemplate = getArg('--template');
+
+if (cliTemplate && !TEMPLATES[cliTemplate]) {
+  console.error(`Invalid --template "${cliTemplate}". Choose: html, astro`.error);
+  process.exit(1);
+}
+
+const questions = [];
+if (!cliName) questions.push({
+  type: 'text',
+  name: 'name',
+  message: 'Project name',
+  validate: (v) => (v.trim().length > 0 ? true : 'Name required'),
+});
+if (!cliTemplate) questions.push({
+  type: 'select',
+  name: 'template',
+  message: 'Template',
+  choices: [
+    { title: 'HTML  — zero-build, CDN styles', value: 'html' },
+    { title: 'Astro — full Astro + @aksell/ui', value: 'astro' },
+  ],
+});
+
+const response = questions.length > 0
+  ? await prompts(questions, {
+      onCancel: () => {
+        console.log('\nCancelled.'.meta);
+        process.exit(0);
+      },
+    })
+  : {};
+
+const name = cliName ?? response.name;
+const template = cliTemplate ?? response.template;
 if (!name || !template) process.exit(0);
 const dest = join(process.cwd(), name);
 
