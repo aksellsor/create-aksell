@@ -1,6 +1,6 @@
 {
   "name": "create-aksell",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scaffold a new Aksell tool",
   "type": "module",
   "bin": {
@@ -11,7 +11,11 @@
     "release:minor": "npm version minor && git push && git push --follow-tags",
     "release:major": "npm version major && git push && git push --follow-tags"
   },
-  "keywords": ["aksell", "create", "scaffold"],
+  "keywords": [
+    "aksell",
+    "create",
+    "scaffold"
+  ],
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
