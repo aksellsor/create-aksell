@@ -4,7 +4,7 @@
   "description": "Scaffold a new Aksell tool",
   "type": "module",
   "bin": {
-    "create-aksell": "./create-aksell.js"
+    "create-aksell": "create-aksell.js"
   },
   "scripts": {
     "release:patch": "npm version patch && git push && git push --follow-tags",
@@ -16,6 +16,10 @@
     "create",
     "scaffold"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aksellsor/create-aksell"
+  },
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
